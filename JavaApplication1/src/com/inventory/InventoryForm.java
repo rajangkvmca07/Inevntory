@@ -41,14 +41,12 @@ public class InventoryForm extends javax.swing.JFrame {
         batteryModel = new javax.swing.JTextField();
         brand = new javax.swing.JTextField();
         model = new javax.swing.JTextField();
-        polarity = new javax.swing.JTextField();
         pinDetail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        batteryType = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         connectorType = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -56,6 +54,8 @@ public class InventoryForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         capacity = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        polarity = new javax.swing.JComboBox();
+        batterType = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Inventory Form");
@@ -135,13 +135,6 @@ public class InventoryForm extends javax.swing.JFrame {
         });
         jPanel3.add(model, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 80, 289, -1));
 
-        polarity.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                polarityKeyPressed(evt);
-            }
-        });
-        jPanel3.add(polarity, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 111, 289, -1));
-
         pinDetail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pinDetailKeyPressed(evt);
@@ -163,18 +156,6 @@ public class InventoryForm extends javax.swing.JFrame {
 
         jLabel4.setText("Polarity");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 114, -1, -1));
-
-        batteryType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                batteryTypeActionPerformed(evt);
-            }
-        });
-        batteryType.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                batteryTypeKeyPressed(evt);
-            }
-        });
-        jPanel3.add(batteryType, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 190, 289, -1));
 
         jLabel6.setText("Battery Type");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 193, -1, -1));
@@ -214,7 +195,13 @@ public class InventoryForm extends javax.swing.JFrame {
         jLabel9.setText("Capacity");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 307, -1, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 11, 770, 340));
+        polarity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(polarity, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 170, -1));
+
+        batterType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(batterType, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 160, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 11, 630, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -222,10 +209,6 @@ public class InventoryForm extends javax.swing.JFrame {
     private void batteryModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batteryModelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_batteryModelActionPerformed
-
-    private void batteryTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batteryTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_batteryTypeActionPerformed
 
     private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
         // TODO add your handling code here:
@@ -236,12 +219,12 @@ public class InventoryForm extends javax.swing.JFrame {
         Inventory  obj= new Inventory();
         obj.setBatteryModel(batteryModel.getText());
         obj.setBrand(brand.getText());
-        obj.setBatteryType(batteryType.getText());
+        obj.setBatteryType(batterType.getSelectedItem().toString());
         obj.setConnectortype(connectorType.getText());
         obj.setCapacity(capacity.getText());
         obj.setMobileModel(model.getText());
         obj.setPinDetail(pinDetail.getText());
-        obj.setPolarity(polarity.getText());
+        obj.setPolarity(polarity.getSelectedItem().toString());
         obj.setType(type.getText());
         dao.addInventory(obj);
          this.setVisible(false);
@@ -296,26 +279,12 @@ public class InventoryForm extends javax.swing.JFrame {
               }
     }//GEN-LAST:event_modelKeyPressed
 
-    private void polarityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polarityKeyPressed
-          int key = evt.getKeyCode();
-              if (key == evt.VK_ENTER){
-               pinDetail.requestFocus();
-              }
-    }//GEN-LAST:event_polarityKeyPressed
-
     private void pinDetailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pinDetailKeyPressed
           int key = evt.getKeyCode();
               if (key == evt.VK_ENTER){
                pinDetail.transferFocus();
               }
     }//GEN-LAST:event_pinDetailKeyPressed
-
-    private void batteryTypeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_batteryTypeKeyPressed
-          int key = evt.getKeyCode();
-              if (key == evt.VK_ENTER){
-               batteryType.transferFocus();
-              }
-    }//GEN-LAST:event_batteryTypeKeyPressed
 
     private void connectorTypeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_connectorTypeKeyPressed
           int key = evt.getKeyCode();
@@ -340,8 +309,8 @@ public class InventoryForm extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox batterType;
     private javax.swing.JTextField batteryModel;
-    private javax.swing.JTextField batteryType;
     private javax.swing.JTextField brand;
     private javax.swing.JTextField capacity;
     private javax.swing.JTextField connectorType;
@@ -360,7 +329,7 @@ public class InventoryForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField model;
     private javax.swing.JTextField pinDetail;
-    private javax.swing.JTextField polarity;
+    private javax.swing.JComboBox polarity;
     private javax.swing.JTextField type;
     // End of variables declaration//GEN-END:variables
 }
